@@ -159,11 +159,20 @@ const Login = () => {
               </span>
               <Sparkles size={14} className="text-warning" />
             </div>
-            <div className="d-flex gap-2">
+            <div className="d-flex gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => handleQuickFill('madalavaruntej05', 'Varun@05')}
+                className="btn btn-sm btn-outline-primary flex-grow-1 text-start p-2"
+                style={{ borderRadius: 8, fontSize: '0.78rem' }}
+              >
+                <div className="fw-bold">Varun (Admin)</div>
+                <div className="text-muted" style={{ fontSize: '0.7rem' }}>madalavaruntej05</div>
+              </button>
               <button
                 type="button"
                 onClick={() => handleQuickFill('admin', 'admin123')}
-                className="btn btn-sm btn-outline-primary flex-grow-1 text-start p-2"
+                className="btn btn-sm btn-outline-secondary flex-grow-1 text-start p-2"
                 style={{ borderRadius: 8, fontSize: '0.78rem' }}
               >
                 <div className="fw-bold">Admin Demo</div>

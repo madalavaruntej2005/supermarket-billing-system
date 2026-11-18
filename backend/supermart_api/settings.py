@@ -6,12 +6,17 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import pymysql
-
-# Install PyMySQL as MySQLdb for MySQL support
-pymysql.install_as_MySQLdb()
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env files
+load_dotenv(BASE_DIR / '.env')
+load_dotenv(BASE_DIR.parent / '.env')
+
+# Install PyMySQL as MySQLdb for MySQL support
+pymysql.install_as_MySQLdb()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'supermart-django-secret-key-production-ready-2026')
