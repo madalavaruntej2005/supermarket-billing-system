@@ -17,7 +17,7 @@ export const billingService = {
   },
 
   getInvoicePdfUrl: (id) => {
-    const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+    const baseURL = import.meta.env.VITE_API_URL || '/api';
     return `${baseURL}/invoices/${id}/pdf/`;
   },
 };
