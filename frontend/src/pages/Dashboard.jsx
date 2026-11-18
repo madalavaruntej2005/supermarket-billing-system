@@ -9,7 +9,9 @@ import {
   TrendingUp,
   FileText,
   Boxes,
-  ArrowUpRight
+  ArrowUpRight,
+  PlusCircle,
+  Plus
 } from 'lucide-react';
 import {
   AreaChart,
@@ -23,9 +25,11 @@ import {
   Bar
 } from 'recharts';
 import { reportService } from '../services/reportService';
+import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
 const Dashboard = () => {
+  const { user } = useAuth();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -70,14 +74,32 @@ const Dashboard = () => {
             Real-time analytics and transaction updates from your supermarket operations.
           </div>
         </div>
-        <button
-          onClick={() => navigate('/billing')}
-          className="btn btn-primary d-flex align-items-center gap-2 px-3 py-2"
-          style={{ borderRadius: 10, fontWeight: 600 }}
-        >
-          <ShoppingCart size={18} />
-          <span>Open POS Counter</span>
-        </button>
+        <div className="d-flex align-items-center gap-2">
+          {user?.is_admin && (
+            <button
+              onClick={() => navigate('/products?action=add')}
+              className="btn btn-outline-primary d-flex align-items-center gap-2 px-3 py-2"
+              style={{
+                borderRadius: 10,
+                fontWeight: 600,
+                backgroundColor: '#FFFFFF',
+                boxShadow: '0 2px 6px rgba(37, 99, 235, 0.12)'
+              }}
+              title="Add new supermarket product"
+            >
+              <PlusCircle size={18} />
+              <span>+ Add Items</span>
+            </button>
+          )}
+          <button
+            onClick={() => navigate('/billing')}
+            className="btn btn-primary d-flex align-items-center gap-2 px-3 py-2"
+            style={{ borderRadius: 10, fontWeight: 600 }}
+          >
+            <ShoppingCart size={18} />
+            <span>Open POS Counter</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards Grid */}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Plus,
   Search,
@@ -24,6 +25,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,6 +53,13 @@ const Products = () => {
     loadCategories();
     loadProducts();
   }, []);
+
+  useEffect(() => {
+    if (searchParams.get('action') === 'add') {
+      openAddModal();
+      setSearchParams({}, { replace: true });
+    }
+  }, [searchParams, categories]);
 
   const loadCategories = async () => {
     try {

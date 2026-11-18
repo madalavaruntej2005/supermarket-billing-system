@@ -12,7 +12,8 @@ import {
   LogOut,
   Store,
   FileText,
-  ShieldCheck
+  ShieldCheck,
+  PlusCircle
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -73,6 +74,26 @@ const Sidebar = () => {
           <Package size={18} />
           <span>Products</span>
         </NavLink>
+
+        {user?.is_admin && (
+          <NavLink
+            to="/products?action=add"
+            className="nav-item-link"
+            style={{
+              backgroundColor: '#EFF6FF',
+              color: '#2563EB',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              paddingLeft: '1.25rem',
+              border: '1px dashed #BFDBFE',
+              margin: '3px 0'
+            }}
+            title="Add new product item to inventory"
+          >
+            <PlusCircle size={17} />
+            <span>+ Add Items</span>
+          </NavLink>
+        )}
 
         <NavLink
           to="/categories"
