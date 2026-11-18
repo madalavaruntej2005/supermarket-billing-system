@@ -11,7 +11,8 @@ import {
   Settings,
   LogOut,
   Store,
-  FileText
+  FileText,
+  ShieldCheck
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -114,6 +115,20 @@ const Sidebar = () => {
           <Settings size={18} />
           <span>Settings</span>
         </NavLink>
+
+        {user?.is_admin && (
+          <a
+            href="/admin/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-item-link"
+            style={{ color: '#4338CA' }}
+            title="Open Django Admin Panel in new tab"
+          >
+            <ShieldCheck size={18} />
+            <span>Admin Portal</span>
+          </a>
+        )}
       </nav>
 
       {/* Footer User Info & Logout */}

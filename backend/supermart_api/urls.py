@@ -5,6 +5,11 @@ from django.conf.urls.static import static
 from django.views.static import serve
 from .spa_views import serve_spa
 
+# Customize Django Admin Branding
+admin.site.site_header = "SuperMart Management & Administration"
+admin.site.site_title = "SuperMart Admin Portal"
+admin.site.index_title = "Supermarket Operations & Master Records"
+
 dist_assets_dir = settings.BASE_DIR.parent / 'frontend' / 'dist' / 'assets'
 
 urlpatterns = [
@@ -24,8 +29,8 @@ urlpatterns = [
     # Frontend Assets
     re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': dist_assets_dir}),
 
-    # Catch-all for React Single Page Application (SPA)
-    re_path(r'^(?!api/|admin/|media/).*$', serve_spa),
+    # Catch-all for React Single Page Application (SPA), excluding admin, api, static, media, and assets
+    re_path(r'^(?!api/|admin(?:/|$)|static/|media/|assets/).*$', serve_spa),
 ]
 
 if settings.DEBUG:
